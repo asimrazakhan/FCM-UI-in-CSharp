@@ -30,8 +30,8 @@
         {
             this.checkNotification = new System.Windows.Forms.CheckBox();
             this.checkData = new System.Windows.Forms.CheckBox();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.send = new System.Windows.Forms.Button();
+            this.cancle = new System.Windows.Forms.Button();
             this.groupBoxNotification = new System.Windows.Forms.GroupBox();
             this.comboBadge = new System.Windows.Forms.ComboBox();
             this.comboSound = new System.Windows.Forms.ComboBox();
@@ -50,6 +50,7 @@
             this.platform = new System.Windows.Forms.Label();
             this.user = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.comboPriority = new System.Windows.Forms.ComboBox();
             this.checkDelay = new System.Windows.Forms.CheckBox();
             this.checkAvailablity = new System.Windows.Forms.CheckBox();
             this.timeToLive = new System.Windows.Forms.TextBox();
@@ -57,7 +58,6 @@
             this.label8 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.comboPriority = new System.Windows.Forms.ComboBox();
             this.groupBoxNotification.SuspendLayout();
             this.groupBoxTypeOfMessage.SuspendLayout();
             this.groupBoxMessage.SuspendLayout();
@@ -89,25 +89,25 @@
             this.checkData.CheckedChanged += new System.EventHandler(this.checkData_CheckedChanged);
             this.checkData.MouseClick += new System.Windows.Forms.MouseEventHandler(this.checkData_MouseClick);
             // 
-            // button1
+            // send
             // 
-            this.button1.Location = new System.Drawing.Point(510, 418);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 6;
-            this.button1.Text = "Send";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.send.Location = new System.Drawing.Point(510, 327);
+            this.send.Name = "send";
+            this.send.Size = new System.Drawing.Size(75, 23);
+            this.send.TabIndex = 6;
+            this.send.Text = "Send";
+            this.send.UseVisualStyleBackColor = true;
+            this.send.Click += new System.EventHandler(this.button1_Click);
             // 
-            // button2
+            // cancle
             // 
-            this.button2.Location = new System.Drawing.Point(395, 418);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 7;
-            this.button2.Text = "Cancle";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.cancle.Location = new System.Drawing.Point(429, 327);
+            this.cancle.Name = "cancle";
+            this.cancle.Size = new System.Drawing.Size(75, 23);
+            this.cancle.TabIndex = 7;
+            this.cancle.Text = "Cancle";
+            this.cancle.UseVisualStyleBackColor = true;
+            this.cancle.Click += new System.EventHandler(this.button2_Click);
             // 
             // groupBoxNotification
             // 
@@ -119,6 +119,7 @@
             this.groupBoxNotification.Controls.Add(this.label5);
             this.groupBoxNotification.Controls.Add(this.label4);
             this.groupBoxNotification.Controls.Add(this.label3);
+            this.groupBoxNotification.Enabled = false;
             this.groupBoxNotification.Location = new System.Drawing.Point(12, 160);
             this.groupBoxNotification.Name = "groupBoxNotification";
             this.groupBoxNotification.Size = new System.Drawing.Size(275, 138);
@@ -219,9 +220,10 @@
             // groupBoxMessage
             // 
             this.groupBoxMessage.Controls.Add(this.message);
-            this.groupBoxMessage.Location = new System.Drawing.Point(12, 304);
+            this.groupBoxMessage.Enabled = false;
+            this.groupBoxMessage.Location = new System.Drawing.Point(293, 160);
             this.groupBoxMessage.Name = "groupBoxMessage";
-            this.groupBoxMessage.Size = new System.Drawing.Size(275, 143);
+            this.groupBoxMessage.Size = new System.Drawing.Size(292, 143);
             this.groupBoxMessage.TabIndex = 10;
             this.groupBoxMessage.TabStop = false;
             this.groupBoxMessage.Text = "Message";
@@ -231,7 +233,7 @@
             this.message.Location = new System.Drawing.Point(6, 19);
             this.message.Multiline = true;
             this.message.Name = "message";
-            this.message.Size = new System.Drawing.Size(263, 118);
+            this.message.Size = new System.Drawing.Size(280, 118);
             this.message.TabIndex = 0;
             this.message.Text = "Type your message here.";
             this.message.TextChanged += new System.EventHandler(this.dataMessage_TextChanged);
@@ -307,11 +309,25 @@
             this.groupBox1.Size = new System.Drawing.Size(292, 142);
             this.groupBox1.TabIndex = 12;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "FcmProperty";
+            this.groupBox1.Text = "FCM Property";
+            // 
+            // comboPriority
+            // 
+            this.comboPriority.FormattingEnabled = true;
+            this.comboPriority.Items.AddRange(new object[] {
+            "High",
+            "Low"});
+            this.comboPriority.Location = new System.Drawing.Point(102, 48);
+            this.comboPriority.Name = "comboPriority";
+            this.comboPriority.Size = new System.Drawing.Size(184, 21);
+            this.comboPriority.TabIndex = 10;
+            this.comboPriority.Text = "High";
             // 
             // checkDelay
             // 
             this.checkDelay.AutoSize = true;
+            this.checkDelay.Checked = true;
+            this.checkDelay.CheckState = System.Windows.Forms.CheckState.Checked;
             this.checkDelay.Location = new System.Drawing.Point(233, 115);
             this.checkDelay.Name = "checkDelay";
             this.checkDelay.Size = new System.Drawing.Size(53, 17);
@@ -322,6 +338,8 @@
             // checkAvailablity
             // 
             this.checkAvailablity.AutoSize = true;
+            this.checkAvailablity.Checked = true;
+            this.checkAvailablity.CheckState = System.Windows.Forms.CheckState.Checked;
             this.checkAvailablity.Location = new System.Drawing.Point(102, 115);
             this.checkAvailablity.Name = "checkAvailablity";
             this.checkAvailablity.Size = new System.Drawing.Size(73, 17);
@@ -373,30 +391,18 @@
             this.label1.Text = "Collaps Key";
             this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
-            // comboPriority
-            // 
-            this.comboPriority.FormattingEnabled = true;
-            this.comboPriority.Items.AddRange(new object[] {
-            "high",
-            "low"});
-            this.comboPriority.Location = new System.Drawing.Point(102, 48);
-            this.comboPriority.Name = "comboPriority";
-            this.comboPriority.Size = new System.Drawing.Size(184, 21);
-            this.comboPriority.TabIndex = 10;
-            this.comboPriority.Text = "high";
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(597, 459);
+            this.ClientSize = new System.Drawing.Size(597, 364);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.groupBoxMessage);
             this.Controls.Add(this.groupBoxTypeOfMessage);
             this.Controls.Add(this.groupBoxNotification);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.cancle);
+            this.Controls.Add(this.send);
             this.Name = "Form1";
             this.Text = "FCM Cloud Messaging";
             this.Load += new System.EventHandler(this.Form1_Load);
@@ -418,8 +424,8 @@
 
         private System.Windows.Forms.CheckBox checkNotification;
         private System.Windows.Forms.CheckBox checkData;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button send;
+        private System.Windows.Forms.Button cancle;
         private System.Windows.Forms.GroupBox groupBoxNotification;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;

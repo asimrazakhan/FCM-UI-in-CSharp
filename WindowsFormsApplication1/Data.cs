@@ -7,10 +7,7 @@ using System.Windows.Forms;
 
 namespace WindowsFormsApplication1
 {
-    // Serializing and Sending this to FCM
-
-
-
+   // Sending this to DCM
     public class Data
     {
         public string message { get; set; }
@@ -55,8 +52,8 @@ namespace WindowsFormsApplication1
                 Notification notification = new Notification();
                 notification.title = text.Text.ToString();
                 notification.body = body.Text.ToString();
-                notification.sound = sound.Text;
-                notification.badge = Convert.ToInt32(badge.Text);
+                notification.sound = (sound.Text == "") ? "Default" : sound.Text;
+                notification.badge = (badge.Text == "") ? 0 : Convert.ToInt32(badge.Text);
                 this.notification = notification;
             }
 
@@ -68,8 +65,8 @@ namespace WindowsFormsApplication1
                 this.collapse_key = collapsKey.Text;
                 this.priority = comboPriority.Text;
                 this.time_to_live = Convert.ToInt32(timeToLive.Text);
-                this.content_available = checkAvailablity.Enabled;
-                this.delay_while_idle = checkDelay.Enabled;
+                this.content_available = checkAvailablity.Checked;
+                this.delay_while_idle = checkDelay.Checked;
 
             }
         }

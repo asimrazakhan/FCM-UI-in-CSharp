@@ -24,11 +24,11 @@ namespace WindowsFormsApplication1
         public void Check() {
             if (checkNotification.Checked == true || checkData.Checked == true)
             {
-                button1.Enabled = true;
+                send.Enabled = true;
             }
             else
             {
-                button1.Enabled = false;
+                send.Enabled = false;
             }
         }
 
@@ -123,12 +123,12 @@ namespace WindowsFormsApplication1
 
         private void checkNotification_CheckedChanged(object sender, EventArgs e)
         {
-
+            groupBoxNotification.Enabled = (checkNotification.Checked) ? true : false; 
         }
 
         private void checkData_CheckedChanged(object sender, EventArgs e)
         {
-
+            groupBoxMessage.Enabled = (checkData.Checked) ? true : false;
         }
 
         private void title_TextChanged(object sender, EventArgs e)
@@ -165,13 +165,18 @@ namespace WindowsFormsApplication1
         private void button1_Click(object sender, EventArgs e)
         {
 
-            
-            
+
+
             // initlizating data
 
-            //Assigning the new values to the class
-            dataObject.AssigningNotificationValues(title, body, comboSound, comboBadge);
-            dataObject.AssigningDataValues(message);
+            if(checkNotification.Checked){
+                dataObject.AssigningNotificationValues(title, body, comboSound, comboBadge);
+            } else if(checkData.Checked ){
+                dataObject.AssigningDataValues(message);
+            }
+
+            //dataObject.AssigningNotificationValues(title, body, comboSound, comboBadge);
+            //dataObject.AssigningDataValues(message);
             dataObject.FcmPropertieValues(collapsKey,comboPriority,timeToLive,checkAvailablity,checkDelay,tokenIDs);
             
             // Pushing into FCM
@@ -201,8 +206,8 @@ namespace WindowsFormsApplication1
             // checking check boxes.
             Check();
 
-            dataObject.AssigningNotificationValues(title,body,comboSound,comboBadge);
-            dataObject.FcmPropertieValues(collapsKey, comboPriority, timeToLive, checkAvailablity, checkDelay, tokenIDs);
+            //dataObject.AssigningNotificationValues(title,body,comboSound,comboBadge);
+            //dataObject.FcmPropertieValues(collapsKey, comboPriority, timeToLive, checkAvailablity, checkDelay, tokenIDs);
         }
 
         private void label1_Click(object sender, EventArgs e)
