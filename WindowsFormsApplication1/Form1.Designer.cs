@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.checkNotification = new System.Windows.Forms.CheckBox();
             this.checkData = new System.Windows.Forms.CheckBox();
             this.send = new System.Windows.Forms.Button();
@@ -393,8 +394,8 @@
             // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.ClientSize = new System.Drawing.Size(597, 364);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.groupBox4);
@@ -403,7 +404,10 @@
             this.Controls.Add(this.groupBoxNotification);
             this.Controls.Add(this.cancle);
             this.Controls.Add(this.send);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form1";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FCM Cloud Messaging";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.groupBoxNotification.ResumeLayout(false);
