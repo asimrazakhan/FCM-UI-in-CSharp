@@ -130,6 +130,7 @@
             // 
             // comboBadge
             // 
+            this.comboBadge.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBadge.FormattingEnabled = true;
             this.comboBadge.Items.AddRange(new object[] {
             "1"});
@@ -137,11 +138,11 @@
             this.comboBadge.Name = "comboBadge";
             this.comboBadge.Size = new System.Drawing.Size(202, 21);
             this.comboBadge.TabIndex = 7;
-            this.comboBadge.Text = "0";
             this.comboBadge.SelectedIndexChanged += new System.EventHandler(this.comboBadge_SelectedIndexChanged);
             // 
             // comboSound
             // 
+            this.comboSound.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboSound.FormattingEnabled = true;
             this.comboSound.Items.AddRange(new object[] {
             "Default"});
@@ -149,7 +150,6 @@
             this.comboSound.Name = "comboSound";
             this.comboSound.Size = new System.Drawing.Size(202, 21);
             this.comboSound.TabIndex = 6;
-            this.comboSound.Text = "Default";
             this.comboSound.SelectedIndexChanged += new System.EventHandler(this.comboSound_SelectedIndexChanged);
             // 
             // body
@@ -254,6 +254,7 @@
             // 
             // comboPlatform
             // 
+            this.comboPlatform.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboPlatform.FormattingEnabled = true;
             this.comboPlatform.Items.AddRange(new object[] {
             "Android",
@@ -262,11 +263,11 @@
             this.comboPlatform.Name = "comboPlatform";
             this.comboPlatform.Size = new System.Drawing.Size(202, 21);
             this.comboPlatform.TabIndex = 3;
-            this.comboPlatform.Text = "iOS";
             this.comboPlatform.SelectedIndexChanged += new System.EventHandler(this.comboPlatform_SelectedIndexChanged);
             // 
             // comboUser
             // 
+            this.comboUser.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboUser.FormattingEnabled = true;
             this.comboUser.Items.AddRange(new object[] {
             "All Users"});
@@ -274,7 +275,6 @@
             this.comboUser.Name = "comboUser";
             this.comboUser.Size = new System.Drawing.Size(202, 21);
             this.comboUser.TabIndex = 2;
-            this.comboUser.Text = "All Users";
             this.comboUser.SelectedIndexChanged += new System.EventHandler(this.comboUser_SelectedIndexChanged);
             // 
             // platform
@@ -314,6 +314,7 @@
             // 
             // comboPriority
             // 
+            this.comboPriority.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboPriority.FormattingEnabled = true;
             this.comboPriority.Items.AddRange(new object[] {
             "High",
@@ -322,7 +323,6 @@
             this.comboPriority.Name = "comboPriority";
             this.comboPriority.Size = new System.Drawing.Size(184, 21);
             this.comboPriority.TabIndex = 10;
-            this.comboPriority.Text = "High";
             // 
             // checkDelay
             // 
