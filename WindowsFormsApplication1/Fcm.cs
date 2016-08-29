@@ -8,6 +8,7 @@ using System.Net;
 using Newtonsoft.Json;
 
 
+
 namespace WindowsFormsApplication1
 {
     // FCM Push Notification and Data Message
@@ -17,7 +18,7 @@ namespace WindowsFormsApplication1
         {
 
             string SERVER_API_KEY = "AIzaSyAXLVMgSayO6JuVAbwkhkxDtiW61t_RrX0";
-            var SENDER_ID = "820346256279";
+            string SENDER_ID = "820346256279";
 
 
             // for plan text
@@ -62,7 +63,7 @@ namespace WindowsFormsApplication1
             StreamReader tReader = new StreamReader(dataStream);
 
 
-            String sResponseFromServer = tReader.ReadToEnd();
+      string sResponseFromServer = tReader.ReadToEnd();
 
 
             tReader.Close();
