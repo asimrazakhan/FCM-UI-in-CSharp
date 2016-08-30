@@ -48,8 +48,7 @@ namespace WindowsFormsApplication1
             {
             
              // Android Devices
-            "fIxUO4KBErQ:APA91bFsFchiJxop5KXgSlxJb0k5pK1ooandRVWj7DyXJ2kAgw5_pW4ot-TXWhWsDvmJJ_SmRQ8-lC84Fq5Rsc4tuS7OhAZzaH6fNqAVEd7z_W63J7VYEKxj7aDTE5ugrNrc42U2COf7",
-            "cOsw768wUqM:APA91bHnhyqZma4MImb82ntdmCi693WuhgnoSVZpMGXAFebU3ft25vj4KdSQ6k3cmX9KFvxIEOsjudjUdiqKeGTTn-JSEWwIm_QzuNrcw81aI9d9EOctscB7f5DSIcUrvPjLsRPo8nOs",
+         
             "dS_cw7JzNGo:APA91bGr6Z6gnW_YywMp1Qu4afVQ0l2VY3Zh9XpFR6oiPSyUkBOGWFkgyOO_PO8FF10TvUOaSWKosAV-9vsTPXHYFEeOkLEJh79AUDeo2ShrLele9ocJGOWqwjQ5XYzpeOZ4CrsmzVax",
 
              //iOS Devices
