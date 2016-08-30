@@ -19,7 +19,10 @@ namespace WindowsFormsApplication1
         {
             InitializeComponent();
         }
-        
+
+        // Making instance of the main data Objet
+        RootObject dataObject = new RootObject();
+
         // checking input values
         public void Check() {
             if (checkNotification.Checked == true || checkData.Checked == true)
@@ -32,17 +35,7 @@ namespace WindowsFormsApplication1
             }
         }
 
-        
-
-
-        RootObject dataObject = new RootObject();
-        //Data data = new Data();
-        //Notification notification = new Notification();
-        //RootObject root = new RootObject();
-
-
-       
-
+  
         // Registration Tokens
          static string[] tokenIDs = new string[] 
             {
@@ -55,58 +48,6 @@ namespace WindowsFormsApplication1
             "f9UTn00fGt0:APA91bEQ6zZ5zP5untj-XNoUQ9ocBfePs_x6Kab39emLViQbdkxBrOrNPdb3dUiDcKnKTJd64GrUVwI3gCnBHamQgEHbJ6yGLqhYqNQ5TeBsrKlQMjJL7k4Bnjs-wbVe_6InfIw5Gy2R"
             };
  
-        
-        // Sending this to FCM
-        //object dataObject = new
-        //{
-        //    // Targets
-        //    // to = "/topics/news",  // Optional, This parameter specifies the recipient of a message.
-        //    registration_ids = tokenIDs,
-
-        //    // Options
-        //    collapse_key = "JOBs",
-        //    priority = "high",
-        //    content_available = true,
-        //    delay_while_idle = false,
-        //    time_to_live = 2419200,  // min is 0 sec and max is 4 weeks is 2,419,200 sec.
-
-        //    // Paylod Data messages, which are handled by the client app.
-        //    data = new
-        //    {
-        //        alert = "Data Message",
-        //        job = "Incomming Job",
-        //        time = System.DateTime.Now.ToString()
-        //    },
-
-        //    //Notification messages, sometimes thought of as "display messages."
-        //     notification = new
-        //    {
-                
-        //        title = , //"Buzy Beez",
-        //        body = "Umer",
-        //        sound = "default",
-        //        badge = 1,
-        //        icon = "myicon" // workin in android
-        //    }
-
-        //};
-
-     
-        //Product product = new Product();
-        //product.Name = "Apple";
-        //product.Expiry = new DateTime(2008, 12, 28);
-        //product.Sizes = new string[] { "Small" };
-
-         
-        //// {
-        ////   "Name": "Apple",
-        ////   "Expiry": "2008-12-28T00:00:00",
-        ////   "Sizes": [
-        ////     "Small"
-        ////   ]
-        //// }
-
-      
 
         private void comboUser_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -184,8 +125,6 @@ namespace WindowsFormsApplication1
             }
 
             
-            //dataObject.AssigningNotificationValues(title, body, comboSound, comboBadge);
-            //dataObject.AssigningDataValues(message);
             dataObject.FcmPropertieValues(collapsKey,comboPriority,timeToLive,checkAvailablity,checkDelay,tokenIDs);
             
             // Pushing into FCM
@@ -217,9 +156,6 @@ namespace WindowsFormsApplication1
         {
             // checking check boxes.
             Check();
-
-            //dataObject.AssigningNotificationValues(title,body,comboSound,comboBadge);
-            //dataObject.FcmPropertieValues(collapsKey, comboPriority, timeToLive, checkAvailablity, checkDelay, tokenIDs);
         }
 
         private void label1_Click(object sender, EventArgs e)
