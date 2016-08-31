@@ -282,18 +282,18 @@
             this.platform.AutoSize = true;
             this.platform.Location = new System.Drawing.Point(10, 51);
             this.platform.Name = "platform";
-            this.platform.Size = new System.Drawing.Size(45, 13);
+            this.platform.Size = new System.Drawing.Size(40, 13);
             this.platform.TabIndex = 1;
-            this.platform.Text = "Platform";
+            this.platform.Text = "Drivers";
             // 
             // user
             // 
             this.user.AutoSize = true;
             this.user.Location = new System.Drawing.Point(10, 23);
             this.user.Name = "user";
-            this.user.Size = new System.Drawing.Size(29, 13);
+            this.user.Size = new System.Drawing.Size(40, 13);
             this.user.TabIndex = 0;
-            this.user.Text = "User";
+            this.user.Text = "Offices";
             // 
             // groupBox1
             // 

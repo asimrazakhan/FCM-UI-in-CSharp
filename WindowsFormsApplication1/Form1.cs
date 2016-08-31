@@ -20,6 +20,13 @@ namespace WindowsFormsApplication1
             InitializeComponent();
         }
 
+
+        // Awaited for firebase database values
+        Task<Dictionary<string, string>> values;
+
+        //Instance of FirebaseDatabase
+        FirebaseDatabase fdb = new FirebaseDatabase();
+
         // Making instance of the main data Objet
         RootObject dataObject = new RootObject();
 
@@ -52,7 +59,6 @@ namespace WindowsFormsApplication1
         private void comboUser_SelectedIndexChanged(object sender, EventArgs e)
         {
             // Get the currently selected item in the ListBox.
-            string curItem = comboUser.SelectedItem.ToString();
               
         }
 
@@ -105,8 +111,6 @@ namespace WindowsFormsApplication1
         private void button1_Click(object sender, EventArgs e)
         {
 
-
-
             // initlizating data
 
             if (checkNotification.Checked)
@@ -128,8 +132,7 @@ namespace WindowsFormsApplication1
             dataObject.FcmPropertieValues(collapsKey,comboPriority,timeToLive,checkAvailablity,checkDelay,tokenIDs);
             
             // Pushing into FCM
-            AndroidFCMPushNotification FCM = new AndroidFCMPushNotification();
-            
+            AndroidFCMPushNotification FCM = new AndroidFCMPushNotification();       
             string  responseFromServer = FCM.SendNotification(dataObject);
 
             MessageBox.Show("Succes: " + responseFromServer[46] +"\n Failure: "+responseFromServer[58]);
@@ -156,6 +159,16 @@ namespace WindowsFormsApplication1
         {
             // checking check boxes.
             Check();
+
+            // Getting tokens from firebase
+            try
+            {
+             this.values = fdb.GetDataAsync();
+            }
+            catch(Exception ex){
+                MessageBox.Show("Error: " + ex);
+            }
+            comboUser.Items.Add(this.values);
         }
 
         private void label1_Click(object sender, EventArgs e)
