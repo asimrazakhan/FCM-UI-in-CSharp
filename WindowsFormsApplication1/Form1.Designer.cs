@@ -48,7 +48,6 @@
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.label7 = new System.Windows.Forms.Label();
             this.comboUser = new System.Windows.Forms.ComboBox();
-            this.textToken = new System.Windows.Forms.TextBox();
             this.user = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.comboPriority = new System.Windows.Forms.ComboBox();
@@ -59,6 +58,7 @@
             this.label8 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.comboDriver = new System.Windows.Forms.ComboBox();
             this.groupBoxNotification.SuspendLayout();
             this.groupBoxTypeOfMessage.SuspendLayout();
             this.groupBoxMessage.SuspendLayout();
@@ -241,9 +241,9 @@
             // 
             // groupBox4
             // 
+            this.groupBox4.Controls.Add(this.comboDriver);
             this.groupBox4.Controls.Add(this.label7);
             this.groupBox4.Controls.Add(this.comboUser);
-            this.groupBox4.Controls.Add(this.textToken);
             this.groupBox4.Controls.Add(this.user);
             this.groupBox4.Location = new System.Drawing.Point(12, 12);
             this.groupBox4.Name = "groupBox4";
@@ -274,14 +274,6 @@
             this.comboUser.Size = new System.Drawing.Size(202, 21);
             this.comboUser.TabIndex = 2;
             this.comboUser.SelectedIndexChanged += new System.EventHandler(this.comboUser_SelectedIndexChanged);
-            // 
-            // textToken
-            // 
-            this.textToken.Location = new System.Drawing.Point(67, 49);
-            this.textToken.Name = "textToken";
-            this.textToken.Size = new System.Drawing.Size(202, 20);
-            this.textToken.TabIndex = 1;
-            this.textToken.TextChanged += new System.EventHandler(this.textToken_TextChanged);
             // 
             // user
             // 
@@ -389,6 +381,20 @@
             this.label1.Text = "Collaps Key";
             this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
+            // comboDriver
+            // 
+            this.comboDriver.AutoCompleteCustomSource.AddRange(new string[] {
+            "Select All Drivers"});
+            this.comboDriver.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboDriver.FormattingEnabled = true;
+            this.comboDriver.Items.AddRange(new object[] {
+            "Select All Drivers"});
+            this.comboDriver.Location = new System.Drawing.Point(67, 47);
+            this.comboDriver.Name = "comboDriver";
+            this.comboDriver.Size = new System.Drawing.Size(202, 21);
+            this.comboDriver.TabIndex = 3;
+            this.comboDriver.SelectedIndexChanged += new System.EventHandler(this.comboDriver_SelectedIndexChanged);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
@@ -451,8 +457,8 @@
         private System.Windows.Forms.CheckBox checkDelay;
         private System.Windows.Forms.CheckBox checkAvailablity;
         private System.Windows.Forms.ComboBox comboPriority;
-        private System.Windows.Forms.TextBox textToken;
         private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.ComboBox comboDriver;
     }
 }
 

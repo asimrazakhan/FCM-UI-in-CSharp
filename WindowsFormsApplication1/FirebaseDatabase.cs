@@ -21,7 +21,7 @@ namespace WindowsFormsApplication1
         // Awaited for firebase database values
         public Dictionary<string, string> values;
 
-        public async Task GetDataAsync(string path) //string[] drivers ,string[] tokens)
+        public async Task<bool> GetDataAsync(string path) //string[] drivers ,string[] tokens)
         {
 
             var client = new HttpClient();
@@ -29,6 +29,7 @@ namespace WindowsFormsApplication1
             // Get the response.
             string response = await client.GetStringAsync("https://buzybeez-184bf.firebaseio.com/"+ path +".json");
             this.values = JsonConvert.DeserializeObject<Dictionary<string, string>>(response);
+            return true;
         }
 
 

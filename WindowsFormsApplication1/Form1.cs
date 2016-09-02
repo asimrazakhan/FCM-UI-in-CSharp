@@ -59,6 +59,9 @@ namespace WindowsFormsApplication1
             // Get the currently selected item in the ListBox.
             string item = comboUser.Text;
             fdb.GetDataAsync(item);
+            comboDriver.Enabled = (comboUser.Focused) ? true : false;
+            comboDriver.Items.Add(fdb.values.Keys);
+            
         }
 
         private void comboPlatform_SelectedIndexChanged(object sender, EventArgs e)
@@ -127,7 +130,7 @@ namespace WindowsFormsApplication1
                 }
             }
 
-            dataObject.FcmPropertieValues(collapsKey,comboPriority,timeToLive,checkAvailablity,checkDelay,tokenIDs, fdb.values[textToken.Text]);
+            dataObject.FcmPropertieValues(collapsKey,comboPriority,timeToLive,checkAvailablity,checkDelay,tokenIDs, fdb.values[comboDriver.Text]);
             
             // Pushing into FCM
             AndroidFCMPushNotification FCM = new AndroidFCMPushNotification();       
@@ -157,20 +160,26 @@ namespace WindowsFormsApplication1
             // checking check boxes.
             Check();
 
+            comboDriver.Enabled = false;
+
          
             //  Getting tokens from firebase
             
            //try {
-               
-           //    //fdb.GetDataAsync();
+
+           //    if (fdb.GetDataAsync()) {
+           //        comboDriver.Items.Add(fdb.values.Keys);
+           //    }
     
            // }
-           // catch (Exception ex)
-           // {
-           //     MessageBox.Show("Error: " + ex);
-           // }
+            //catch (Exception ex)
+            //{
+            //    MessageBox.Show("Error: " + ex);
+            //}
 
         }
+
+        //}
 
         private void label1_Click(object sender, EventArgs e)
         {
@@ -182,9 +191,17 @@ namespace WindowsFormsApplication1
             tokenIDs = null;
         }
 
-       
-    }
+        private void comboDriver_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (comboDriver.Text == "Select All Drivers") {
+                tokenIDs = fdb.values.Values.ToArray();
+                
+                fdb.values = null;
+            } 
+        }
+    }    
+ }
 
     
 
-}
+
