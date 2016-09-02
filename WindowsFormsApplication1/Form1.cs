@@ -21,11 +21,9 @@ namespace WindowsFormsApplication1
         }
 
 
-        // Awaited for firebase database values
-        Task<Dictionary<string, string>> values;
-
         //Instance of FirebaseDatabase
         FirebaseDatabase fdb = new FirebaseDatabase();
+        
 
         // Making instance of the main data Objet
         RootObject dataObject = new RootObject();
@@ -44,7 +42,7 @@ namespace WindowsFormsApplication1
 
   
         // Registration Tokens
-         static string[] tokenIDs = new string[] 
+         string[] tokenIDs = new string[] 
             {
             
              // Android Devices
@@ -59,7 +57,8 @@ namespace WindowsFormsApplication1
         private void comboUser_SelectedIndexChanged(object sender, EventArgs e)
         {
             // Get the currently selected item in the ListBox.
-              
+            string item = comboUser.Text;
+            fdb.GetDataAsync(item);
         }
 
         private void comboPlatform_SelectedIndexChanged(object sender, EventArgs e)
@@ -128,16 +127,13 @@ namespace WindowsFormsApplication1
                 }
             }
 
-            
-            dataObject.FcmPropertieValues(collapsKey,comboPriority,timeToLive,checkAvailablity,checkDelay,tokenIDs);
+            dataObject.FcmPropertieValues(collapsKey,comboPriority,timeToLive,checkAvailablity,checkDelay,tokenIDs, fdb.values[textToken.Text]);
             
             // Pushing into FCM
             AndroidFCMPushNotification FCM = new AndroidFCMPushNotification();       
             string  responseFromServer = FCM.SendNotification(dataObject);
 
             MessageBox.Show("Succes: " + responseFromServer[46] +"\n Failure: "+responseFromServer[58]);
-
-            
 
         }
 
@@ -148,6 +144,7 @@ namespace WindowsFormsApplication1
         private void button2_Click(object sender, EventArgs e)
         {
             Application.Exit();
+
         }
 
         private void checkData_MouseClick(object sender, MouseEventArgs e)
@@ -160,20 +157,29 @@ namespace WindowsFormsApplication1
             // checking check boxes.
             Check();
 
-            // Getting tokens from firebase
-            try
-            {
-             this.values = fdb.GetDataAsync();
-            }
-            catch(Exception ex){
-                MessageBox.Show("Error: " + ex);
-            }
-            comboUser.Items.Add(this.values);
+         
+            //  Getting tokens from firebase
+            
+           //try {
+               
+           //    //fdb.GetDataAsync();
+    
+           // }
+           // catch (Exception ex)
+           // {
+           //     MessageBox.Show("Error: " + ex);
+           // }
+
         }
 
         private void label1_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void textToken_TextChanged(object sender, EventArgs e)
+        {
+            tokenIDs = null;
         }
 
        

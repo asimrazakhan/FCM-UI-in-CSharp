@@ -16,19 +16,63 @@ namespace WindowsFormsApplication1
     }
 
     class FirebaseDatabase
+    
     {
+        // Awaited for firebase database values
+        public Dictionary<string, string> values;
 
-
-        public async Task<Dictionary<string, string>> GetDataAsync()
+        public async Task GetDataAsync(string path) //string[] drivers ,string[] tokens)
         {
 
             var client = new HttpClient();
 
             // Get the response.
-            string response = await client.GetStringAsync("https://buzybeez-184bf.firebaseio.com/higherVisibility.json");
-            Dictionary<string, string> values = JsonConvert.DeserializeObject<Dictionary<string, string>>(response);
-            return values;
+            string response = await client.GetStringAsync("https://buzybeez-184bf.firebaseio.com/"+ path +".json");
+            this.values = JsonConvert.DeserializeObject<Dictionary<string, string>>(response);
         }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ //public async Task<Dictionary<string, string>> GetDataAsync() //string[] drivers ,string[] tokens)
+ //       {
+
+ //           var client = new HttpClient();
+
+ //           // Get the response.
+ //           string response = await client.GetStringAsync("https://buzybeez-184bf.firebaseio.com/higherVisibility.json");
+ //           Dictionary<string, string> values = JsonConvert.DeserializeObject<Dictionary<string, string>>(response);
+
+      
+
+
+
+ //           return values;
+
+
+ //           //drivers  = new string[values.Keys.Count];
+ //           //values.Keys.CopyTo(drivers, 0);
+           
+            
+            
+ //           //tokens   = new string[values.Values.Count];
+
+ //           //values.Values.CopyTo(tokens, 0);
+
+           
+ //       }
+       
     }
 }
 

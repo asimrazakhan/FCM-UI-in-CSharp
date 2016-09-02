@@ -46,9 +46,9 @@
             this.groupBoxMessage = new System.Windows.Forms.GroupBox();
             this.message = new System.Windows.Forms.TextBox();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.comboPlatform = new System.Windows.Forms.ComboBox();
+            this.label7 = new System.Windows.Forms.Label();
             this.comboUser = new System.Windows.Forms.ComboBox();
-            this.platform = new System.Windows.Forms.Label();
+            this.textToken = new System.Windows.Forms.TextBox();
             this.user = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.comboPriority = new System.Windows.Forms.ComboBox();
@@ -241,9 +241,9 @@
             // 
             // groupBox4
             // 
-            this.groupBox4.Controls.Add(this.comboPlatform);
+            this.groupBox4.Controls.Add(this.label7);
             this.groupBox4.Controls.Add(this.comboUser);
-            this.groupBox4.Controls.Add(this.platform);
+            this.groupBox4.Controls.Add(this.textToken);
             this.groupBox4.Controls.Add(this.user);
             this.groupBox4.Location = new System.Drawing.Point(12, 12);
             this.groupBox4.Name = "groupBox4";
@@ -252,39 +252,36 @@
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Audience";
             // 
-            // comboPlatform
+            // label7
             // 
-            this.comboPlatform.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboPlatform.FormattingEnabled = true;
-            this.comboPlatform.Items.AddRange(new object[] {
-            "Android",
-            "iOS"});
-            this.comboPlatform.Location = new System.Drawing.Point(67, 48);
-            this.comboPlatform.Name = "comboPlatform";
-            this.comboPlatform.Size = new System.Drawing.Size(202, 21);
-            this.comboPlatform.TabIndex = 3;
-            this.comboPlatform.SelectedIndexChanged += new System.EventHandler(this.comboPlatform_SelectedIndexChanged);
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(10, 52);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(49, 13);
+            this.label7.TabIndex = 2;
+            this.label7.Text = "Driver ID";
             // 
             // comboUser
             // 
             this.comboUser.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboUser.FormattingEnabled = true;
             this.comboUser.Items.AddRange(new object[] {
-            "All Users"});
+            "NBA",
+            "CYP",
+            "NBT"});
             this.comboUser.Location = new System.Drawing.Point(67, 20);
             this.comboUser.Name = "comboUser";
             this.comboUser.Size = new System.Drawing.Size(202, 21);
             this.comboUser.TabIndex = 2;
             this.comboUser.SelectedIndexChanged += new System.EventHandler(this.comboUser_SelectedIndexChanged);
             // 
-            // platform
+            // textToken
             // 
-            this.platform.AutoSize = true;
-            this.platform.Location = new System.Drawing.Point(10, 51);
-            this.platform.Name = "platform";
-            this.platform.Size = new System.Drawing.Size(40, 13);
-            this.platform.TabIndex = 1;
-            this.platform.Text = "Drivers";
+            this.textToken.Location = new System.Drawing.Point(67, 49);
+            this.textToken.Name = "textToken";
+            this.textToken.Size = new System.Drawing.Size(202, 20);
+            this.textToken.TabIndex = 1;
+            this.textToken.TextChanged += new System.EventHandler(this.textToken_TextChanged);
             // 
             // user
             // 
@@ -442,9 +439,7 @@
         private System.Windows.Forms.GroupBox groupBoxTypeOfMessage;
         private System.Windows.Forms.GroupBox groupBoxMessage;
         private System.Windows.Forms.GroupBox groupBox4;
-        private System.Windows.Forms.Label platform;
         private System.Windows.Forms.Label user;
-        private System.Windows.Forms.ComboBox comboPlatform;
         private System.Windows.Forms.ComboBox comboUser;
         private System.Windows.Forms.TextBox message;
         private System.Windows.Forms.GroupBox groupBox1;
@@ -456,6 +451,8 @@
         private System.Windows.Forms.CheckBox checkDelay;
         private System.Windows.Forms.CheckBox checkAvailablity;
         private System.Windows.Forms.ComboBox comboPriority;
+        private System.Windows.Forms.TextBox textToken;
+        private System.Windows.Forms.Label label7;
     }
 }
 
