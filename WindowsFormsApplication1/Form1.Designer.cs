@@ -267,7 +267,6 @@
             this.checkBox_NBT.TabIndex = 8;
             this.checkBox_NBT.Text = "Show Driver ID\'s";
             this.checkBox_NBT.UseVisualStyleBackColor = true;
-            this.checkBox_NBT.Visible = false;
             this.checkBox_NBT.CheckedChanged += new System.EventHandler(this.checkBox_NBT_CheckedChanged);
             // 
             // checkBox_CYP

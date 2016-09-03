@@ -10,10 +10,6 @@ using System.Windows.Forms;
 using System.Collections.Generic;
 namespace WindowsFormsApplication1
 {
-    //class Office {
-
-    //    List<string> token { get; set; }
-    //}
 
     class FirebaseDatabase
     {

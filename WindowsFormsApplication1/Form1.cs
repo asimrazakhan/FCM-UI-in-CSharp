@@ -29,8 +29,6 @@ namespace WindowsFormsApplication1
         
         // Making instance of the main data Objet
         RootObject dataObject = new RootObject();
-
-       // Dictionary<string, Dictionary<string, string>> val;
       
         
         private async void Form1_Load(object sender, EventArgs e)
@@ -81,42 +79,43 @@ namespace WindowsFormsApplication1
         private void comboUser_SelectedIndexChanged(object sender, EventArgs e)
         {
 
-            switch (comboUser.Text) {
+            //switch (comboUser.Text)
+            //{
 
-                case "CYP":
-                    checkBox1.Visible = true;
-                    checkBox_NBT.Visible = false;
-                    checkBox_CYP.Visible = false;
-                    checkBox_NBT.Checked = false;
-                    checkBox_CYP.Checked = false;
-                    checkNotification.Enabled = true;
-                    checkData.Enabled = true;
+            //    case "NBA":
+            //        checkBox1.Visible = true;
+            //        checkBox_NBT.Visible = false;
+            //        checkBox_CYP.Visible = false;
+            //        checkBox_NBT.Checked = false;
+            //        checkBox_CYP.Checked = false;
+            //        checkNotification.Enabled = true;
+            //        checkData.Enabled = true;
 
-                    break;
+            //        break;
 
-                case "NBT":
-                    checkBox_NBT.Visible = true;
-                    checkBox1.Visible = false;
-                    checkBox_CYP.Visible = false;
-                    checkBox1.Checked = false;
-                    checkBox_CYP.Checked = false;
-                    checkNotification.Enabled = true;
-                    checkData.Enabled = true;
-                    break;
+            //    case "NBT":
+            //        checkBox_NBT.Visible = true;
+            //        checkBox1.Visible = false;
+            //        checkBox_CYP.Visible = false;
+            //        checkBox1.Checked = false;
+            //        checkBox_CYP.Checked = false;
+            //        checkNotification.Enabled = true;
+            //        checkData.Enabled = true;
+            //        break;
 
-                case "NBA":
-                    checkBox_NBT.Visible = false;
-                    checkBox1.Visible = false;
-                    checkBox_CYP.Visible = true;
-                    checkBox_NBT.Checked = false;
-                    checkBox1.Checked = false;
-                    checkNotification.Enabled = true;
-                    checkData.Enabled = true;
-                    break;
+            //    case "CYP":
+            //        checkBox_NBT.Visible = false;
+            //        checkBox1.Visible = false;
+            //        checkBox_CYP.Visible = true;
+            //        checkBox_NBT.Checked = false;
+            //        checkBox1.Checked = false;
+            //        checkNotification.Enabled = true;
+            //        checkData.Enabled = true;
+            //        break;
 
-                default:
-                    break;
-            }
+            //    default:
+            //        break;
+            //}
 
         }
 
@@ -213,7 +212,6 @@ namespace WindowsFormsApplication1
             Check(); 
         }
 
-     
 
         private void label1_Click(object sender, EventArgs e)
         {
@@ -244,6 +242,8 @@ namespace WindowsFormsApplication1
             
                 if (checkBox1.Checked)
                 {
+                    comboDriver.Items.Clear();
+                    comboDriver.Items.Add("Select All Drivers");
                     comboDriver.Items.AddRange(fdb.values[comboUser.Text].Keys.ToArray());
                     comboDriver.Enabled = true;
 
