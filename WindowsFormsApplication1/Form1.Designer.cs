@@ -46,9 +46,6 @@
             this.groupBoxMessage = new System.Windows.Forms.GroupBox();
             this.message = new System.Windows.Forms.TextBox();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.checkBox_NBT = new System.Windows.Forms.CheckBox();
-            this.checkBox_CYP = new System.Windows.Forms.CheckBox();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.comboDriver = new System.Windows.Forms.ComboBox();
             this.label7 = new System.Windows.Forms.Label();
             this.comboUser = new System.Windows.Forms.ComboBox();
@@ -214,6 +211,7 @@
             // 
             this.groupBoxTypeOfMessage.Controls.Add(this.checkNotification);
             this.groupBoxTypeOfMessage.Controls.Add(this.checkData);
+            this.groupBoxTypeOfMessage.Enabled = false;
             this.groupBoxTypeOfMessage.Location = new System.Drawing.Point(12, 98);
             this.groupBoxTypeOfMessage.Name = "groupBoxTypeOfMessage";
             this.groupBoxTypeOfMessage.Size = new System.Drawing.Size(275, 55);
@@ -244,9 +242,6 @@
             // 
             // groupBox4
             // 
-            this.groupBox4.Controls.Add(this.checkBox_NBT);
-            this.groupBox4.Controls.Add(this.checkBox_CYP);
-            this.groupBox4.Controls.Add(this.checkBox1);
             this.groupBox4.Controls.Add(this.comboDriver);
             this.groupBox4.Controls.Add(this.label7);
             this.groupBox4.Controls.Add(this.comboUser);
@@ -257,41 +252,6 @@
             this.groupBox4.TabIndex = 11;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Audience";
-            // 
-            // checkBox_NBT
-            // 
-            this.checkBox_NBT.AutoSize = true;
-            this.checkBox_NBT.Location = new System.Drawing.Point(164, 17);
-            this.checkBox_NBT.Name = "checkBox_NBT";
-            this.checkBox_NBT.Size = new System.Drawing.Size(105, 17);
-            this.checkBox_NBT.TabIndex = 8;
-            this.checkBox_NBT.Text = "Show Driver ID\'s";
-            this.checkBox_NBT.UseVisualStyleBackColor = true;
-            this.checkBox_NBT.CheckedChanged += new System.EventHandler(this.checkBox_NBT_CheckedChanged);
-            // 
-            // checkBox_CYP
-            // 
-            this.checkBox_CYP.AutoSize = true;
-            this.checkBox_CYP.Location = new System.Drawing.Point(164, 17);
-            this.checkBox_CYP.Name = "checkBox_CYP";
-            this.checkBox_CYP.Size = new System.Drawing.Size(105, 17);
-            this.checkBox_CYP.TabIndex = 7;
-            this.checkBox_CYP.Text = "Show Driver ID\'s";
-            this.checkBox_CYP.UseVisualStyleBackColor = true;
-            this.checkBox_CYP.Visible = false;
-            this.checkBox_CYP.CheckedChanged += new System.EventHandler(this.checkBox_CYP_CheckedChanged);
-            // 
-            // checkBox1
-            // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(164, 17);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(105, 17);
-            this.checkBox1.TabIndex = 6;
-            this.checkBox1.Text = "Show Driver ID\'s";
-            this.checkBox1.UseVisualStyleBackColor = true;
-            this.checkBox1.Visible = false;
-            this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
             // 
             // comboDriver
             // 
@@ -324,7 +284,7 @@
             ""});
             this.comboUser.Location = new System.Drawing.Point(67, 14);
             this.comboUser.Name = "comboUser";
-            this.comboUser.Size = new System.Drawing.Size(87, 21);
+            this.comboUser.Size = new System.Drawing.Size(202, 21);
             this.comboUser.TabIndex = 2;
             this.comboUser.SelectedIndexChanged += new System.EventHandler(this.comboUser_SelectedIndexChanged);
             // 
@@ -498,9 +458,6 @@
         private System.Windows.Forms.ComboBox comboPriority;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.ComboBox comboDriver;
-        private System.Windows.Forms.CheckBox checkBox1;
-        private System.Windows.Forms.CheckBox checkBox_CYP;
-        private System.Windows.Forms.CheckBox checkBox_NBT;
     }
 }
 

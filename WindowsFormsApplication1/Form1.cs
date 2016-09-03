@@ -1,14 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.IO;
-using Newtonsoft.Json;
 
 
 namespace WindowsFormsApplication1
@@ -20,102 +13,62 @@ namespace WindowsFormsApplication1
             InitializeComponent();
         }
 
-
-        // database offices token stroe globaly to access any where
-        string[] Offices;
-
         //Instance of FirebaseDatabase
         FirebaseDatabase fdb = new FirebaseDatabase();
         
         // Making instance of the main data Objet
         RootObject dataObject = new RootObject();
-      
-        
+
+        // Registration Tokens
+        string[] tokenIDs;
+
+
+        // checking input values
+        public void Check()
+        {
+            send.Enabled = (checkNotification.Checked == true || checkData.Checked == true) ? true : false;
+        }
+
         private async void Form1_Load(object sender, EventArgs e)
         {
             
-            // checking check boxes.
+            // checking status of check boxes.
             Check();
+            comboDriver.Enabled = false;
 
             // getting data from database
             await fdb.GetDataAsync();
-
-            comboDriver.Enabled = false;
 
             // setting default values on combo boxes.
             comboPriority.Text = "High";
             comboBadge.Text = "1";
             comboSound.Text = "Default";
-            checkData.Enabled = false;
-            checkNotification.Enabled = false;
 
-            // Getting Office Keys from database
-            Offices = fdb.values.Keys.ToArray();
+            // Showing Office Keys from database to the comboBox
+            comboUser.Items.AddRange(fdb.values.Keys.ToArray());
 
-            comboUser.Items.AddRange(Offices);
+            // Adding string key and value to be passed to the 'to' property when all drivers is selected
+            fdb.values.Add("Selected All Drivers", new Dictionary<string, string>() { { "All", "" } });
 
         }
-
-        
-        
-        // checking input values
-        public void Check() {
-            if (checkNotification.Checked == true || checkData.Checked == true)
-            {
-                send.Enabled = true;
-            }
-            else
-            {
-                send.Enabled = false;
-            }
-        }
-
-  
-        // Registration Tokens
-        string[] tokenIDs;
            
- 
-
         private void comboUser_SelectedIndexChanged(object sender, EventArgs e)
         {
 
-            //switch (comboUser.Text)
-            //{
+            comboDriver.Items.Clear();
+            comboDriver.Items.Add("Select All Drivers");
 
-            //    case "NBA":
-            //        checkBox1.Visible = true;
-            //        checkBox_NBT.Visible = false;
-            //        checkBox_CYP.Visible = false;
-            //        checkBox_NBT.Checked = false;
-            //        checkBox_CYP.Checked = false;
-            //        checkNotification.Enabled = true;
-            //        checkData.Enabled = true;
+            try
+            {
+                comboDriver.Items.AddRange(fdb.values[comboUser.Text].Keys.ToArray());
+                comboDriver.Enabled = true;
 
-            //        break;
-
-            //    case "NBT":
-            //        checkBox_NBT.Visible = true;
-            //        checkBox1.Visible = false;
-            //        checkBox_CYP.Visible = false;
-            //        checkBox1.Checked = false;
-            //        checkBox_CYP.Checked = false;
-            //        checkNotification.Enabled = true;
-            //        checkData.Enabled = true;
-            //        break;
-
-            //    case "CYP":
-            //        checkBox_NBT.Visible = false;
-            //        checkBox1.Visible = false;
-            //        checkBox_CYP.Visible = true;
-            //        checkBox_NBT.Checked = false;
-            //        checkBox1.Checked = false;
-            //        checkNotification.Enabled = true;
-            //        checkData.Enabled = true;
-            //        break;
-
-            //    default:
-            //        break;
-            //}
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show("Exception: " + ex);
+                comboDriver.Enabled = false;
+            }
 
         }
 
@@ -225,11 +178,12 @@ namespace WindowsFormsApplication1
 
         private void comboDriver_SelectedIndexChanged(object sender, EventArgs e)
         {
+            // Enabled the type of message field
+            groupBoxTypeOfMessage.Enabled = true;
+
 
             if (comboDriver.Text == "Select All Drivers") {
                 tokenIDs = fdb.values[comboUser.Text].Values.ToArray();
-                fdb.values.Add("Selected All Drivers", new Dictionary<string, string>() { { "All", "" } });
-
 
                 //var dictionary = new Dictionary<int, Dictionary<int, int>>();
                 //dictionary.Add(5, new Dictionary<int, int>() {{ 8, 1 }});
@@ -240,51 +194,51 @@ namespace WindowsFormsApplication1
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
         {
             
-                if (checkBox1.Checked)
-                {
-                    comboDriver.Items.Clear();
-                    comboDriver.Items.Add("Select All Drivers");
-                    comboDriver.Items.AddRange(fdb.values[comboUser.Text].Keys.ToArray());
-                    comboDriver.Enabled = true;
+                //if (checkBox1.Checked)
+                //{
+                //    comboDriver.Items.Clear();
+                //    //comboDriver.Items.AddRange(fdb.values[comboUser.Text].Keys.ToArray());
+                //    //comboDriver.Enabled = true;
+                //    comboDriver.Items.Add("Select All Drivers");
 
-                }
-                else
-                {
-                    comboDriver.Items.Clear();
-                    comboDriver.Items.Add("Select All Drivers");
-                }
+                //}
+                //else
+                //{
+                //    comboDriver.Items.Clear();
+                //    comboDriver.Items.Add("Select All Drivers");
+                //}
             
         }
 
         private void checkBox_CYP_CheckedChanged(object sender, EventArgs e)
         {
             
-                if (checkBox_CYP.Checked)
-                {
-                    comboDriver.Items.AddRange(fdb.values[comboUser.Text].Keys.ToArray());
-                    comboDriver.Enabled = true;
-                }
-                else
-                {
-                    comboDriver.Items.Clear();
-                    comboDriver.Items.Add("Select All Drivers");
-                }
+                //if (checkBox_CYP.Checked)
+                //{
+                //    comboDriver.Items.AddRange(fdb.values[comboUser.Text].Keys.ToArray());
+                //    comboDriver.Enabled = true;
+                //}
+                //else
+                //{
+                //    comboDriver.Items.Clear();
+                //    comboDriver.Items.Add("Select All Drivers");
+                //}
             
         }
 
         private void checkBox_NBT_CheckedChanged(object sender, EventArgs e)
         {
             
-                if (checkBox_NBT.Checked)
-                {
-                    comboDriver.Items.AddRange(fdb.values[comboUser.Text].Keys.ToArray());
-                    comboDriver.Enabled = true;
-                }
-                else
-                {
-                    comboDriver.Items.Clear();
-                    comboDriver.Items.Add("Select All Drivers");
-                }
+                //if (checkBox_NBT.Checked)
+                //{
+                //    comboDriver.Items.AddRange(fdb.values[comboUser.Text].Keys.ToArray());
+                //    comboDriver.Enabled = true;
+                //}
+                //else
+                //{
+                //    comboDriver.Items.Clear();
+                //    comboDriver.Items.Add("Select All Drivers");
+                //}
             
         }
     }    
