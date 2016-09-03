@@ -33,9 +33,14 @@ namespace WindowsFormsApplication1
         {
             // checking check boxes.
             Check();
-
+           
             comboDriver.Enabled = false;
-         
+
+
+            // setting default values on combo boxes.
+            comboPriority.Text = "High";
+            comboBadge.Text = "1";
+            comboSound.Text = "Default";
 
 
         }
@@ -63,14 +68,8 @@ namespace WindowsFormsApplication1
 
   
         // Registration Tokens
-         string[] tokenIDs = new string[] 
-            {
-             // Android Devices
-            "dS_cw7JzNGo:APA91bGr6Z6gnW_YywMp1Qu4afVQ0l2VY3Zh9XpFR6oiPSyUkBOGWFkgyOO_PO8FF10TvUOaSWKosAV-9vsTPXHYFEeOkLEJh79AUDeo2ShrLele9ocJGOWqwjQ5XYzpeOZ4CrsmzVax",
-
-             //iOS Devices
-            "f9UTn00fGt0:APA91bEQ6zZ5zP5untj-XNoUQ9ocBfePs_x6Kab39emLViQbdkxBrOrNPdb3dUiDcKnKTJd64GrUVwI3gCnBHamQgEHbJ6yGLqhYqNQ5TeBsrKlQMjJL7k4Bnjs-wbVe_6InfIw5Gy2R"
-            };
+        string[] tokenIDs;
+           
  
 
         private void comboUser_SelectedIndexChanged(object sender, EventArgs e)

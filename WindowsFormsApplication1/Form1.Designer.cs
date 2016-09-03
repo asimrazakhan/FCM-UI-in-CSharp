@@ -46,6 +46,9 @@
             this.groupBoxMessage = new System.Windows.Forms.GroupBox();
             this.message = new System.Windows.Forms.TextBox();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.checkBox_NBT = new System.Windows.Forms.CheckBox();
+            this.checkBox_CYP = new System.Windows.Forms.CheckBox();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.comboDriver = new System.Windows.Forms.ComboBox();
             this.label7 = new System.Windows.Forms.Label();
             this.comboUser = new System.Windows.Forms.ComboBox();
@@ -59,9 +62,6 @@
             this.label8 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
-            this.checkBox_CYP = new System.Windows.Forms.CheckBox();
-            this.checkBox_NBT = new System.Windows.Forms.CheckBox();
             this.groupBoxNotification.SuspendLayout();
             this.groupBoxTypeOfMessage.SuspendLayout();
             this.groupBoxMessage.SuspendLayout();
@@ -258,6 +258,42 @@
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Audience";
             // 
+            // checkBox_NBT
+            // 
+            this.checkBox_NBT.AutoSize = true;
+            this.checkBox_NBT.Location = new System.Drawing.Point(164, 17);
+            this.checkBox_NBT.Name = "checkBox_NBT";
+            this.checkBox_NBT.Size = new System.Drawing.Size(105, 17);
+            this.checkBox_NBT.TabIndex = 8;
+            this.checkBox_NBT.Text = "Show Driver ID\'s";
+            this.checkBox_NBT.UseVisualStyleBackColor = true;
+            this.checkBox_NBT.Visible = false;
+            this.checkBox_NBT.CheckedChanged += new System.EventHandler(this.checkBox_NBT_CheckedChanged);
+            // 
+            // checkBox_CYP
+            // 
+            this.checkBox_CYP.AutoSize = true;
+            this.checkBox_CYP.Location = new System.Drawing.Point(164, 17);
+            this.checkBox_CYP.Name = "checkBox_CYP";
+            this.checkBox_CYP.Size = new System.Drawing.Size(105, 17);
+            this.checkBox_CYP.TabIndex = 7;
+            this.checkBox_CYP.Text = "Show Driver ID\'s";
+            this.checkBox_CYP.UseVisualStyleBackColor = true;
+            this.checkBox_CYP.Visible = false;
+            this.checkBox_CYP.CheckedChanged += new System.EventHandler(this.checkBox_CYP_CheckedChanged);
+            // 
+            // checkBox1
+            // 
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Location = new System.Drawing.Point(164, 17);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(105, 17);
+            this.checkBox1.TabIndex = 6;
+            this.checkBox1.Text = "Show Driver ID\'s";
+            this.checkBox1.UseVisualStyleBackColor = true;
+            this.checkBox1.Visible = false;
+            this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
+            // 
             // comboDriver
             // 
             this.comboDriver.AutoCompleteCustomSource.AddRange(new string[] {
@@ -400,42 +436,6 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Collaps Key";
             this.label1.Click += new System.EventHandler(this.label1_Click);
-            // 
-            // checkBox1
-            // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(164, 17);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(105, 17);
-            this.checkBox1.TabIndex = 6;
-            this.checkBox1.Text = "Show Driver ID\'s";
-            this.checkBox1.UseVisualStyleBackColor = true;
-            this.checkBox1.Visible = false;
-            this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
-            // 
-            // checkBox_CYP
-            // 
-            this.checkBox_CYP.AutoSize = true;
-            this.checkBox_CYP.Location = new System.Drawing.Point(164, 17);
-            this.checkBox_CYP.Name = "checkBox_CYP";
-            this.checkBox_CYP.Size = new System.Drawing.Size(105, 17);
-            this.checkBox_CYP.TabIndex = 7;
-            this.checkBox_CYP.Text = "Show Driver ID\'s";
-            this.checkBox_CYP.UseVisualStyleBackColor = true;
-            this.checkBox_CYP.Visible = false;
-            this.checkBox_CYP.CheckedChanged += new System.EventHandler(this.checkBox_CYP_CheckedChanged);
-            // 
-            // checkBox_NBT
-            // 
-            this.checkBox_NBT.AutoSize = true;
-            this.checkBox_NBT.Location = new System.Drawing.Point(164, 17);
-            this.checkBox_NBT.Name = "checkBox_NBT";
-            this.checkBox_NBT.Size = new System.Drawing.Size(105, 17);
-            this.checkBox_NBT.TabIndex = 8;
-            this.checkBox_NBT.Text = "Show Driver ID\'s";
-            this.checkBox_NBT.UseVisualStyleBackColor = true;
-            this.checkBox_NBT.Visible = false;
-            this.checkBox_NBT.CheckedChanged += new System.EventHandler(this.checkBox_NBT_CheckedChanged);
             // 
             // Form1
             // 

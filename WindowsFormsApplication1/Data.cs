@@ -62,7 +62,7 @@ namespace WindowsFormsApplication1
 
             public void FcmPropertieValues(TextBox collapsKey, ComboBox comboPriority, TextBox timeToLive, CheckBox checkDelay, CheckBox checkAvailablity, string[] tokenIDs, string token)
             {
-                this.to = token;
+                this.to = (token == "" )? null : token;
                 this.registration_ids = tokenIDs;
                 this.collapse_key = collapsKey.Text;
                 this.priority = comboPriority.Text;
