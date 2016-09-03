@@ -28,6 +28,27 @@ namespace WindowsFormsApplication1
         // Making instance of the main data Objet
         RootObject dataObject = new RootObject();
 
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            // checking check boxes.
+            Check();
+
+            comboDriver.Enabled = false;
+         
+
+
+        }
+
+        
+        
+        
+        
+        
+        
+        
+        
+        
         // checking input values
         public void Check() {
             if (checkNotification.Checked == true || checkData.Checked == true)
@@ -44,9 +65,7 @@ namespace WindowsFormsApplication1
         // Registration Tokens
          string[] tokenIDs = new string[] 
             {
-            
              // Android Devices
-         
             "dS_cw7JzNGo:APA91bGr6Z6gnW_YywMp1Qu4afVQ0l2VY3Zh9XpFR6oiPSyUkBOGWFkgyOO_PO8FF10TvUOaSWKosAV-9vsTPXHYFEeOkLEJh79AUDeo2ShrLele9ocJGOWqwjQ5XYzpeOZ4CrsmzVax",
 
              //iOS Devices
@@ -56,13 +75,42 @@ namespace WindowsFormsApplication1
 
         private void comboUser_SelectedIndexChanged(object sender, EventArgs e)
         {
-            // Get the currently selected item in the ListBox.
-            string item = comboUser.Text;
-            fdb.GetDataAsync(item);
-            comboDriver.Enabled = (comboUser.Focused) ? true : false;
-            comboDriver.Items.Add(fdb.values.Keys);
+
+            switch (comboUser.Text) {
             
+                case "NBA":
+                    checkBox1.Visible = true;
+                    checkBox_NBT.Visible = false;
+                    checkBox_CYP.Visible = false;
+                    checkBox_NBT.Checked = false;
+                    checkBox_CYP.Checked = false;
+
+                    break;
+
+                case "NBT":
+                    checkBox_NBT.Visible = true;
+                    checkBox1.Visible = false;
+                    checkBox_CYP.Visible = false;
+                    checkBox1.Checked = false;
+                    checkBox_CYP.Checked = false;
+
+                    break;
+
+                case "CYP":
+                    checkBox_NBT.Visible = false;
+                    checkBox1.Visible = false;
+                    checkBox_CYP.Visible = true;
+                    checkBox_NBT.Checked = false;
+                    checkBox1.Checked = false;
+
+                    break;
+
+                default:
+                    break;
+            }
+
         }
+
 
         private void comboPlatform_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -105,6 +153,7 @@ namespace WindowsFormsApplication1
 
         }
 
+
         private void dataMessage_TextChanged(object sender, EventArgs e)
         {
 
@@ -130,7 +179,7 @@ namespace WindowsFormsApplication1
                 }
             }
 
-            dataObject.FcmPropertieValues(collapsKey,comboPriority,timeToLive,checkAvailablity,checkDelay,tokenIDs, fdb.values[comboDriver.Text]);
+            dataObject.FcmPropertieValues(collapsKey,comboPriority,timeToLive,checkAvailablity,checkDelay,tokenIDs,fdb.values[comboDriver.Text]);
             
             // Pushing into FCM
             AndroidFCMPushNotification FCM = new AndroidFCMPushNotification();       
@@ -155,31 +204,7 @@ namespace WindowsFormsApplication1
             Check(); 
         }
 
-        private void Form1_Load(object sender, EventArgs e)
-        {
-            // checking check boxes.
-            Check();
-
-            comboDriver.Enabled = false;
-
-         
-            //  Getting tokens from firebase
-            
-           //try {
-
-           //    if (fdb.GetDataAsync()) {
-           //        comboDriver.Items.Add(fdb.values.Keys);
-           //    }
-    
-           // }
-            //catch (Exception ex)
-            //{
-            //    MessageBox.Show("Error: " + ex);
-            //}
-
-        }
-
-        //}
+     
 
         private void label1_Click(object sender, EventArgs e)
         {
@@ -188,20 +213,69 @@ namespace WindowsFormsApplication1
 
         private void textToken_TextChanged(object sender, EventArgs e)
         {
-            tokenIDs = null;
+
         }
 
         private void comboDriver_SelectedIndexChanged(object sender, EventArgs e)
         {
+
             if (comboDriver.Text == "Select All Drivers") {
                 tokenIDs = fdb.values.Values.ToArray();
-                
-                fdb.values = null;
+                fdb.values["Select All Drivers"] = "";
             } 
+        }
+
+        private async void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+
+
+            if (checkBox1.Checked)
+            {
+                bool result = await fdb.GetDataAsync(comboUser.Text);
+                comboDriver.Items.AddRange(fdb.values.Keys.ToArray());
+                comboDriver.Enabled = true;
+                
+            }
+            else
+            {
+                comboDriver.Items.Clear();
+                comboDriver.Items.Add("Select All Drivers");
+
+
+            }
+        }
+
+        private async void checkBox_CYP_CheckedChanged(object sender, EventArgs e)
+        {
+           
+            if (checkBox_CYP.Checked)
+            {
+                bool result = await fdb.GetDataAsync(comboUser.Text);
+                comboDriver.Items.AddRange(fdb.values.Keys.ToArray());
+                comboDriver.Enabled = true;
+            }
+            else
+            {
+
+                    comboDriver.Items.Clear();
+                    comboDriver.Items.Add("Select All Drivers"); 
+            }
+        }
+
+        private async void checkBox_NBT_CheckedChanged(object sender, EventArgs e)
+        {
+
+            if (checkBox_NBT.Checked)
+            {
+                bool result = await fdb.GetDataAsync(comboUser.Text);
+                comboDriver.Items.AddRange(fdb.values.Keys.ToArray());
+                comboDriver.Enabled = true;
+            }
+            else
+            {
+                comboDriver.Items.Clear();
+                comboDriver.Items.Add("Select All Drivers");
+            }
         }
     }    
  }
-
-    
-
-
