@@ -322,9 +322,7 @@
             this.comboUser.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboUser.FormattingEnabled = true;
             this.comboUser.Items.AddRange(new object[] {
-            "NBA",
-            "CYP",
-            "NBT"});
+            ""});
             this.comboUser.Location = new System.Drawing.Point(67, 14);
             this.comboUser.Name = "comboUser";
             this.comboUser.Size = new System.Drawing.Size(87, 21);

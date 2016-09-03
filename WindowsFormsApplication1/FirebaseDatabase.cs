@@ -10,27 +10,29 @@ using System.Windows.Forms;
 using System.Collections.Generic;
 namespace WindowsFormsApplication1
 {
-    class Office {
+    //class Office {
 
-        List<string> token { get; set; }
-    }
+    //    List<string> token { get; set; }
+    //}
 
     class FirebaseDatabase
-    
     {
         // Awaited for firebase database values
-        public Dictionary<string, string> values;
+        public Dictionary<string, Dictionary<string, string>> values;
 
-        public async Task<bool> GetDataAsync(string path) //string[] drivers ,string[] tokens)
+        public async Task<bool> GetDataAsync()
         {
 
             var client = new HttpClient();
 
             // Get the response.
-            string response = await client.GetStringAsync("https://buzybeez-184bf.firebaseio.com/"+ path +".json");
-            this.values = JsonConvert.DeserializeObject<Dictionary<string, string>>(response);
+            string response = await client.GetStringAsync("https://buzybeez-184bf.firebaseio.com/.json");
+            this.values = JsonConvert.DeserializeObject<Dictionary<string, Dictionary<string, string>>>(response);
             return true;
+
         }
+    }
+}
 
 
 
@@ -73,10 +75,7 @@ namespace WindowsFormsApplication1
 
            
  //       }
-       
-    }
-}
-
+      
 
 //string json = @"{
 //  'Name': 'Bad Boys',

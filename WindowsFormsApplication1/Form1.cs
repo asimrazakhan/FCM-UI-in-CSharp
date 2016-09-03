@@ -21,37 +21,43 @@ namespace WindowsFormsApplication1
         }
 
 
+        // database offices token stroe globaly to access any where
+        string[] Offices;
+
         //Instance of FirebaseDatabase
         FirebaseDatabase fdb = new FirebaseDatabase();
         
-
         // Making instance of the main data Objet
         RootObject dataObject = new RootObject();
 
-
-        private void Form1_Load(object sender, EventArgs e)
+       // Dictionary<string, Dictionary<string, string>> val;
+      
+        
+        private async void Form1_Load(object sender, EventArgs e)
         {
+            
             // checking check boxes.
             Check();
-           
-            comboDriver.Enabled = false;
 
+            // getting data from database
+            await fdb.GetDataAsync();
+
+            comboDriver.Enabled = false;
 
             // setting default values on combo boxes.
             comboPriority.Text = "High";
             comboBadge.Text = "1";
             comboSound.Text = "Default";
+            checkData.Enabled = false;
+            checkNotification.Enabled = false;
 
+            // Getting Office Keys from database
+            Offices = fdb.values.Keys.ToArray();
+
+            comboUser.Items.AddRange(Offices);
 
         }
 
-        
-        
-        
-        
-        
-        
-        
         
         
         // checking input values
@@ -76,13 +82,15 @@ namespace WindowsFormsApplication1
         {
 
             switch (comboUser.Text) {
-            
-                case "NBA":
+
+                case "CYP":
                     checkBox1.Visible = true;
                     checkBox_NBT.Visible = false;
                     checkBox_CYP.Visible = false;
                     checkBox_NBT.Checked = false;
                     checkBox_CYP.Checked = false;
+                    checkNotification.Enabled = true;
+                    checkData.Enabled = true;
 
                     break;
 
@@ -92,16 +100,18 @@ namespace WindowsFormsApplication1
                     checkBox_CYP.Visible = false;
                     checkBox1.Checked = false;
                     checkBox_CYP.Checked = false;
-
+                    checkNotification.Enabled = true;
+                    checkData.Enabled = true;
                     break;
 
-                case "CYP":
+                case "NBA":
                     checkBox_NBT.Visible = false;
                     checkBox1.Visible = false;
                     checkBox_CYP.Visible = true;
                     checkBox_NBT.Checked = false;
                     checkBox1.Checked = false;
-
+                    checkNotification.Enabled = true;
+                    checkData.Enabled = true;
                     break;
 
                 default:
@@ -178,7 +188,7 @@ namespace WindowsFormsApplication1
                 }
             }
 
-            dataObject.FcmPropertieValues(collapsKey,comboPriority,timeToLive,checkAvailablity,checkDelay,tokenIDs,fdb.values[comboDriver.Text]);
+            dataObject.FcmPropertieValues(collapsKey, comboPriority, timeToLive, checkAvailablity, checkDelay, tokenIDs, fdb.values["Selected All Drivers"]["All"]);
             
             // Pushing into FCM
             AndroidFCMPushNotification FCM = new AndroidFCMPushNotification();       
@@ -219,62 +229,63 @@ namespace WindowsFormsApplication1
         {
 
             if (comboDriver.Text == "Select All Drivers") {
-                tokenIDs = fdb.values.Values.ToArray();
-                fdb.values["Select All Drivers"] = "";
+                tokenIDs = fdb.values[comboUser.Text].Values.ToArray();
+                fdb.values.Add("Selected All Drivers", new Dictionary<string, string>() { { "All", "" } });
+
+
+                //var dictionary = new Dictionary<int, Dictionary<int, int>>();
+                //dictionary.Add(5, new Dictionary<int, int>() {{ 8, 1 }});
+
             } 
         }
 
-        private async void checkBox1_CheckedChanged(object sender, EventArgs e)
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
         {
+            
+                if (checkBox1.Checked)
+                {
+                    comboDriver.Items.AddRange(fdb.values[comboUser.Text].Keys.ToArray());
+                    comboDriver.Enabled = true;
 
-
-            if (checkBox1.Checked)
-            {
-                bool result = await fdb.GetDataAsync(comboUser.Text);
-                comboDriver.Items.AddRange(fdb.values.Keys.ToArray());
-                comboDriver.Enabled = true;
-                
-            }
-            else
-            {
-                comboDriver.Items.Clear();
-                comboDriver.Items.Add("Select All Drivers");
-
-
-            }
-        }
-
-        private async void checkBox_CYP_CheckedChanged(object sender, EventArgs e)
-        {
-           
-            if (checkBox_CYP.Checked)
-            {
-                bool result = await fdb.GetDataAsync(comboUser.Text);
-                comboDriver.Items.AddRange(fdb.values.Keys.ToArray());
-                comboDriver.Enabled = true;
-            }
-            else
-            {
-
+                }
+                else
+                {
                     comboDriver.Items.Clear();
-                    comboDriver.Items.Add("Select All Drivers"); 
-            }
+                    comboDriver.Items.Add("Select All Drivers");
+                }
+            
         }
 
-        private async void checkBox_NBT_CheckedChanged(object sender, EventArgs e)
+        private void checkBox_CYP_CheckedChanged(object sender, EventArgs e)
         {
+            
+                if (checkBox_CYP.Checked)
+                {
+                    comboDriver.Items.AddRange(fdb.values[comboUser.Text].Keys.ToArray());
+                    comboDriver.Enabled = true;
+                }
+                else
+                {
+                    comboDriver.Items.Clear();
+                    comboDriver.Items.Add("Select All Drivers");
+                }
+            
+        }
 
-            if (checkBox_NBT.Checked)
-            {
-                bool result = await fdb.GetDataAsync(comboUser.Text);
-                comboDriver.Items.AddRange(fdb.values.Keys.ToArray());
-                comboDriver.Enabled = true;
-            }
-            else
-            {
-                comboDriver.Items.Clear();
-                comboDriver.Items.Add("Select All Drivers");
-            }
+        private void checkBox_NBT_CheckedChanged(object sender, EventArgs e)
+        {
+            
+                if (checkBox_NBT.Checked)
+                {
+                    comboDriver.Items.AddRange(fdb.values[comboUser.Text].Keys.ToArray());
+                    comboDriver.Enabled = true;
+                }
+                else
+                {
+                    comboDriver.Items.Clear();
+                    comboDriver.Items.Add("Select All Drivers");
+                }
+            
         }
     }    
  }
