@@ -110,7 +110,7 @@ namespace WindowsFormsApplication1
             dataObject.FcmPropertieValues(collapsKey, comboPriority, timeToLive, checkAvailablity, checkDelay, tokenIDs, fdb.values[comboOffices.Text][comboDriver.Text]);
 
             // removing the key from the dictionary to overcome the error (item already existed)
-            fdb.values[comboOffices.Text].Remove(comboDriver.Text);
+            fdb.values[comboOffices.Text].Remove("Select All Drivers");
 
             // Pushing into FCM
             AndroidFCMPushNotification FCM = new AndroidFCMPushNotification();
