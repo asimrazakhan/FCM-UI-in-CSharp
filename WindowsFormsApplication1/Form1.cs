@@ -37,26 +37,17 @@ namespace WindowsFormsApplication1
             Check();
             comboDriver.Enabled = false;
 
-            // getting data from database
-            await fdb.GetDataAsync();
-
             // setting default values on combo boxes.
             comboPriority.Text = "High";
             comboBadge.Text = "1";
             comboSound.Text = "Default";
             comboOffices.Items.Clear();
 
-
+            // getting data from database
+            await fdb.GetDataAsync();
+            
             // Showing Office Keys from database to the comboBox
             comboOffices.Items.AddRange(fdb.values.Keys.ToArray());
-
-            //// Adding string key and value to be passed to the 'to' property when all drivers is selected
-            fdb.values.Add("Selected All Drivers", new Dictionary<string, string>() { { "All", "" } });
-            fdb.values.Add("Selected All Drivers", new Dictionary<string, string>() { { "All", "" } });
-
-            // Adding string key and value to be passed to the 'to' property when all drivers is selected
-            fdb.values[comboOffices.Text].Add(comboDriver.Text, "");
-
         }
 
         private void comboOffices_SelectedIndexChanged(object sender, EventArgs e)
@@ -71,22 +62,8 @@ namespace WindowsFormsApplication1
         {
             // Enabled the type of message field
             groupBoxTypeOfMessage.Enabled = true;
+            tokenIDs = (comboDriver.Text == "Select All Drivers") ? tokenIDs = fdb.values[comboOffices.Text].Values.ToArray() : null;
 
-            if (comboDriver.Text == "Select All Drivers")
-            {
-                tokenIDs = fdb.values[comboOffices.Text].Values.ToArray();
-
-                //try 
-                //{
-                //    // Adding string key and value to be passed to the 'to' property when all drivers is selected
-                //    fdb.values[comboOffices.Text].Add(comboDriver.Text, "");
-                //}
-                //catch(Exception ex)
-                //{
-                //    MessageBox.Show("Error" + ex);
-                //}
-                
-            }
         }
 
         private void checkData_MouseClick(object sender, MouseEventArgs e)
@@ -108,9 +85,13 @@ namespace WindowsFormsApplication1
 
         private void button1_Click(object sender, EventArgs e)
         {
+            if (comboDriver.Text == "Select All Drivers")
+            {
+                // Adding string key and value to be passed to the 'to' property when all drivers is selected
+                fdb.values[comboOffices.Text].Add(comboDriver.Text, "");
+            }
 
             // initlizating data
-
             if (checkNotification.Checked)
             {
                 dataObject.AssigningNotificationValues(title, body, comboSound, comboBadge);
@@ -127,6 +108,9 @@ namespace WindowsFormsApplication1
             }
 
             dataObject.FcmPropertieValues(collapsKey, comboPriority, timeToLive, checkAvailablity, checkDelay, tokenIDs, fdb.values[comboOffices.Text][comboDriver.Text]);
+
+            // removing the key from the dictionary to overcome the error (item already existed)
+            fdb.values[comboOffices.Text].Remove(comboDriver.Text);
 
             // Pushing into FCM
             AndroidFCMPushNotification FCM = new AndroidFCMPushNotification();
