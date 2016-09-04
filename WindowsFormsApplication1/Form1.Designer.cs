@@ -48,7 +48,7 @@
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.comboDriver = new System.Windows.Forms.ComboBox();
             this.label7 = new System.Windows.Forms.Label();
-            this.comboUser = new System.Windows.Forms.ComboBox();
+            this.comboOffices = new System.Windows.Forms.ComboBox();
             this.user = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.comboPriority = new System.Windows.Forms.ComboBox();
@@ -244,7 +244,7 @@
             // 
             this.groupBox4.Controls.Add(this.comboDriver);
             this.groupBox4.Controls.Add(this.label7);
-            this.groupBox4.Controls.Add(this.comboUser);
+            this.groupBox4.Controls.Add(this.comboOffices);
             this.groupBox4.Controls.Add(this.user);
             this.groupBox4.Location = new System.Drawing.Point(12, 12);
             this.groupBox4.Name = "groupBox4";
@@ -276,17 +276,17 @@
             this.label7.TabIndex = 2;
             this.label7.Text = "Driver ID";
             // 
-            // comboUser
+            // comboOffices
             // 
-            this.comboUser.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboUser.FormattingEnabled = true;
-            this.comboUser.Items.AddRange(new object[] {
+            this.comboOffices.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboOffices.FormattingEnabled = true;
+            this.comboOffices.Items.AddRange(new object[] {
             ""});
-            this.comboUser.Location = new System.Drawing.Point(67, 14);
-            this.comboUser.Name = "comboUser";
-            this.comboUser.Size = new System.Drawing.Size(202, 21);
-            this.comboUser.TabIndex = 2;
-            this.comboUser.SelectedIndexChanged += new System.EventHandler(this.comboUser_SelectedIndexChanged);
+            this.comboOffices.Location = new System.Drawing.Point(67, 14);
+            this.comboOffices.Name = "comboOffices";
+            this.comboOffices.Size = new System.Drawing.Size(202, 21);
+            this.comboOffices.TabIndex = 2;
+            this.comboOffices.SelectedIndexChanged += new System.EventHandler(this.comboOffices_SelectedIndexChanged);
             // 
             // user
             // 
@@ -445,7 +445,7 @@
         private System.Windows.Forms.GroupBox groupBoxMessage;
         private System.Windows.Forms.GroupBox groupBox4;
         private System.Windows.Forms.Label user;
-        private System.Windows.Forms.ComboBox comboUser;
+        private System.Windows.Forms.ComboBox comboOffices;
         private System.Windows.Forms.TextBox message;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label label8;

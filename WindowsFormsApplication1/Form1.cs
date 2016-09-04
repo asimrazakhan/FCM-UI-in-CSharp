@@ -23,12 +23,13 @@ namespace WindowsFormsApplication1
         string[] tokenIDs;
 
 
-        // checking input values
+        // checking to disable or enable send button
         public void Check()
         {
             send.Enabled = (checkNotification.Checked == true || checkData.Checked == true) ? true : false;
         }
 
+        // form loading
         private async void Form1_Load(object sender, EventArgs e)
         {
             
@@ -43,51 +44,106 @@ namespace WindowsFormsApplication1
             comboPriority.Text = "High";
             comboBadge.Text = "1";
             comboSound.Text = "Default";
-            comboUser.Items.Clear();
+            comboOffices.Items.Clear();
 
 
             // Showing Office Keys from database to the comboBox
-            comboUser.Items.AddRange(fdb.values.Keys.ToArray());
+            comboOffices.Items.AddRange(fdb.values.Keys.ToArray());
 
-            // Adding string key and value to be passed to the 'to' property when all drivers is selected
+            //// Adding string key and value to be passed to the 'to' property when all drivers is selected
+            fdb.values.Add("Selected All Drivers", new Dictionary<string, string>() { { "All", "" } });
             fdb.values.Add("Selected All Drivers", new Dictionary<string, string>() { { "All", "" } });
 
-        }
-           
-        private void comboUser_SelectedIndexChanged(object sender, EventArgs e)
-        {
+            // Adding string key and value to be passed to the 'to' property when all drivers is selected
+            fdb.values[comboOffices.Text].Add(comboDriver.Text, "");
 
+        }
+
+        private void comboOffices_SelectedIndexChanged(object sender, EventArgs e)
+        {
             comboDriver.Items.Clear();
             comboDriver.Items.Add("Select All Drivers");
-
-            try
-            {
-                comboDriver.Items.AddRange(fdb.values[comboUser.Text].Keys.ToArray());
-                comboDriver.Enabled = true;
-
-            }
-            catch(Exception ex)
-            {
-                MessageBox.Show("Exception: " + ex);
-                comboDriver.Enabled = false;
-            }
-
+            comboDriver.Items.AddRange(fdb.values[comboOffices.Text].Keys.ToArray());
+            comboDriver.Enabled = true;
         }
 
-
-        private void comboPlatform_SelectedIndexChanged(object sender, EventArgs e)
+        private void comboDriver_SelectedIndexChanged(object sender, EventArgs e)
         {
+            // Enabled the type of message field
+            groupBoxTypeOfMessage.Enabled = true;
 
+            if (comboDriver.Text == "Select All Drivers")
+            {
+                tokenIDs = fdb.values[comboOffices.Text].Values.ToArray();
+
+                //try 
+                //{
+                //    // Adding string key and value to be passed to the 'to' property when all drivers is selected
+                //    fdb.values[comboOffices.Text].Add(comboDriver.Text, "");
+                //}
+                //catch(Exception ex)
+                //{
+                //    MessageBox.Show("Error" + ex);
+                //}
+                
+            }
+        }
+
+        private void checkData_MouseClick(object sender, MouseEventArgs e)
+        {
+            Check();
         }
 
         private void checkNotification_CheckedChanged(object sender, EventArgs e)
         {
-            groupBoxNotification.Enabled = (checkNotification.Checked) ? true : false; 
+            // enabling or disabiling field relates to the notification check box
+            groupBoxNotification.Enabled = (checkNotification.Checked) ? true : false;
         }
 
         private void checkData_CheckedChanged(object sender, EventArgs e)
         {
+            // enabling or disabiling field relates to the data check box
             groupBoxMessage.Enabled = (checkData.Checked) ? true : false;
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+
+            // initlizating data
+
+            if (checkNotification.Checked)
+            {
+                dataObject.AssigningNotificationValues(title, body, comboSound, comboBadge);
+                dataObject.data = null;
+            }
+
+            if (checkData.Checked)
+            {
+                dataObject.AssigningDataValues(message);
+                if (!checkNotification.Checked)
+                {
+                    dataObject.notification = null;
+                }
+            }
+
+            dataObject.FcmPropertieValues(collapsKey, comboPriority, timeToLive, checkAvailablity, checkDelay, tokenIDs, fdb.values[comboOffices.Text][comboDriver.Text]);
+
+            // Pushing into FCM
+            AndroidFCMPushNotification FCM = new AndroidFCMPushNotification();
+            string responseFromServer = FCM.SendNotification(dataObject);
+
+            MessageBox.Show("Succes: " + responseFromServer[46] + "\n Failure: " + responseFromServer[58]);
+
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void comboPlatform_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
 
         private void title_TextChanged(object sender, EventArgs e)
@@ -122,51 +178,10 @@ namespace WindowsFormsApplication1
 
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        public void Submit() 
         {
 
-            // initlizating data
-
-            if (checkNotification.Checked)
-            {
-                dataObject.AssigningNotificationValues(title, body, comboSound, comboBadge);
-                dataObject.data = null;
-            }
-
-            if (checkData.Checked)
-            {
-                dataObject.AssigningDataValues(message);
-                if (!checkNotification.Checked)
-                {
-                    dataObject.notification = null;
-                }
-            }
-
-            dataObject.FcmPropertieValues(collapsKey, comboPriority, timeToLive, checkAvailablity, checkDelay, tokenIDs, fdb.values["Selected All Drivers"]["All"]);
-            
-            // Pushing into FCM
-            AndroidFCMPushNotification FCM = new AndroidFCMPushNotification();       
-            string  responseFromServer = FCM.SendNotification(dataObject);
-
-            MessageBox.Show("Succes: " + responseFromServer[46] +"\n Failure: "+responseFromServer[58]);
-
         }
-
-        public void Submit() {
-        }
-
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-            Application.Exit();
-
-        }
-
-        private void checkData_MouseClick(object sender, MouseEventArgs e)
-        {
-            Check(); 
-        }
-
 
         private void label1_Click(object sender, EventArgs e)
         {
@@ -178,70 +193,21 @@ namespace WindowsFormsApplication1
 
         }
 
-        private void comboDriver_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            // Enabled the type of message field
-            groupBoxTypeOfMessage.Enabled = true;
-
-
-            if (comboDriver.Text == "Select All Drivers") {
-                tokenIDs = fdb.values[comboUser.Text].Values.ToArray();
-
-                //var dictionary = new Dictionary<int, Dictionary<int, int>>();
-                //dictionary.Add(5, new Dictionary<int, int>() {{ 8, 1 }});
-
-            } 
-        }
-
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
         {
-            
-                //if (checkBox1.Checked)
-                //{
-                //    comboDriver.Items.Clear();
-                //    //comboDriver.Items.AddRange(fdb.values[comboUser.Text].Keys.ToArray());
-                //    //comboDriver.Enabled = true;
-                //    comboDriver.Items.Add("Select All Drivers");
 
-                //}
-                //else
-                //{
-                //    comboDriver.Items.Clear();
-                //    comboDriver.Items.Add("Select All Drivers");
-                //}
-            
         }
 
         private void checkBox_CYP_CheckedChanged(object sender, EventArgs e)
         {
             
-                //if (checkBox_CYP.Checked)
-                //{
-                //    comboDriver.Items.AddRange(fdb.values[comboUser.Text].Keys.ToArray());
-                //    comboDriver.Enabled = true;
-                //}
-                //else
-                //{
-                //    comboDriver.Items.Clear();
-                //    comboDriver.Items.Add("Select All Drivers");
-                //}
-            
         }
 
         private void checkBox_NBT_CheckedChanged(object sender, EventArgs e)
         {
-            
-                //if (checkBox_NBT.Checked)
-                //{
-                //    comboDriver.Items.AddRange(fdb.values[comboUser.Text].Keys.ToArray());
-                //    comboDriver.Enabled = true;
-                //}
-                //else
-                //{
-                //    comboDriver.Items.Clear();
-                //    comboDriver.Items.Add("Select All Drivers");
-                //}
-            
+
         }
+
+        
     }    
  }
