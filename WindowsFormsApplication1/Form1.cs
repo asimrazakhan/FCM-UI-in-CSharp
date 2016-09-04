@@ -43,6 +43,8 @@ namespace WindowsFormsApplication1
             comboPriority.Text = "High";
             comboBadge.Text = "1";
             comboSound.Text = "Default";
+            comboUser.Items.Clear();
+
 
             // Showing Office Keys from database to the comboBox
             comboUser.Items.AddRange(fdb.values.Keys.ToArray());
